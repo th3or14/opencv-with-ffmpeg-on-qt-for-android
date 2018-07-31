@@ -6,6 +6,8 @@ Update Qt if necessary. I installed the latest stable version from Qt Maintenanc
 
 Install JDK. Version 9 may cause some installation problems, version 8 is ok. I picked OpenJDK having executed ```apt install openjdk-8-jre openjdk-8-jdk```.
 
+Install Yasm (FFmpeg dependency). I got it from packages: ```apt install yasm```.
+
 Install Android Studio to get Android SDK https://developer.android.com/studio/index.html. Handling some Android stuff without Android Studio is painful.
 
 Download and unpack Android NDK https://developer.android.com/ndk/downloads/older_releases.html. Try android-ndk-r14b, some problems may occur if you choose later releases.
@@ -38,6 +40,8 @@ Checked with the following configuration:
 * Qt 5.10.1
 
 * OpenJDK 1.8.0_162
+
+* Yasm 1.3.0
 
 * Android Studio 3.1.2
 
