@@ -8,7 +8,7 @@ Install JDK. Version 9 may cause some installation problems, version 8 is ok. I 
 
 Install Yasm (FFmpeg dependency). I got it from packages: ```apt install yasm```.
 
-Install Android Studio to get Android SDK https://developer.android.com/studio/index.html. Handling some Android stuff without Android Studio is painful.
+Install Android Studio to get Android SDK https://developer.android.com/studio/index.html. Also create a new Android Virtual Device at **Tools > AVD Manager**. I accessed **Tools** after starting a new Android Studio project.
 
 Download and unpack Android NDK https://developer.android.com/ndk/downloads/older_releases.html. Try android-ndk-r14b, some problems may occur if you choose later releases.
 
@@ -22,6 +22,8 @@ export FFMPEG_SRC_DIR="$HOME/Development/opencv-with-ffmpeg-on-qt-for-android/FF
 ```
 
 to `~/.profile` and relogin.
+
+FFmpeg is compiled with `-O3`. For OpenCV optimization level is not `-O3`, see/modify `ANDROID_COMPILER_FLAGS_RELEASE` at `build/cmake/android.toolchain.cmake` inside you NDK directory.
 
 Now edit `NDK_PATH` inside `build.sh` and run this script to build FFmpeg and OpenCV for x86 and armeabi-v7a. Sources are downloaded automatically.
 
