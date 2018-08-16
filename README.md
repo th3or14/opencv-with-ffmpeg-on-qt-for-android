@@ -8,7 +8,7 @@ Install JDK. Version 9 may cause some installation problems, version 8 is ok. I 
 
 Install Yasm (FFmpeg dependency). I got it from packages: ```apt install yasm```.
 
-Install Android Studio to get Android SDK https://developer.android.com/studio/index.html. Also create a new Android Virtual Device at **Tools > AVD Manager**. I accessed **Tools** after starting a new Android Studio project.
+Install Android Studio to get Android SDK https://developer.android.com/studio/index.html. Also create a new Android Virtual Device via **Tools > AVD Manager** if you are going to use an emulator. I accessed **Tools** after starting a new Android Studio project.
 
 Download and unpack Android NDK https://developer.android.com/ndk/downloads/older_releases.html. Try android-ndk-r14b, some problems may occur if you choose later releases.
 
@@ -60,3 +60,7 @@ Checked with the following configuration:
 #### Text relocations warning
 
 This issue appears on x86 only. https://trac.ffmpeg.org/ticket/4928
+
+#### API compatibility warning
+
+Try to downgrade your emulator's API level, i.e., create Android Virtual Device with another system image.
