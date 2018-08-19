@@ -23,7 +23,7 @@ export FFMPEG_SRC_DIR="$HOME/Development/opencv-with-ffmpeg-on-qt-for-android/FF
 
 to `~/.profile` and relogin.
 
-FFmpeg is compiled with `-O3`. For OpenCV optimization level is not `-O3`, see/modify `ANDROID_COMPILER_FLAGS_RELEASE` at `build/cmake/android.toolchain.cmake` inside you NDK directory.
+FFmpeg is configured to be compiled with `-O3`. For OpenCV optimization level is not `-O3`, see/modify `ANDROID_COMPILER_FLAGS_RELEASE` at `build/cmake/android.toolchain.cmake` inside you NDK directory.
 
 Now edit `NDK_PATH` inside `build.sh` and run this script to build FFmpeg and OpenCV for x86 and armeabi-v7a. Sources are downloaded automatically.
 
@@ -63,4 +63,4 @@ This issue appears on x86 only. https://trac.ffmpeg.org/ticket/4928
 
 #### API compatibility warning
 
-Try to downgrade your emulator's API level, i.e., create Android Virtual Device with another system image.
+Try to downgrade your emulator's API level, i.e., create and use an Android Virtual Device with another system image. Or upgrade `NDK_PLATFORM_LEVEL` inside `build.sh` and try to recompile the libraries but it will likely become a new challenge to be taken.
