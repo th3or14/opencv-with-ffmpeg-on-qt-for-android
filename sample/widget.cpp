@@ -33,6 +33,5 @@ void Widget::on_write_video_clicked()
                     cv::Scalar(255, 255, 255));
         vw.write(frame);
     }
-    vw.release();
     QMessageBox::information(this, "Status", "Success!", QMessageBox::Ok);
 }
