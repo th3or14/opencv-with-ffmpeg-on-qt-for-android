@@ -25,7 +25,7 @@ to `~/.profile` and relogin.
 
 FFmpeg is configured to be compiled with `-O3`. For OpenCV optimization level is not `-O3`, see/modify `ANDROID_COMPILER_FLAGS_RELEASE` at `build/cmake/android.toolchain.cmake` inside your NDK directory.
 
-Now edit `NDK_PATH` inside `build.sh` and run this script to build FFmpeg 3.0.11 and OpenCV 3.4.1 for x86 and armeabi-v7a. Sources are downloaded automatically.
+Now edit `NDK_PATH` inside `build.sh` and run this script to build FFmpeg 4.1 and OpenCV 4.0.1 for x86 and armeabi-v7a. Sources are downloaded automatically.
 
 ## Running the sample application
 
