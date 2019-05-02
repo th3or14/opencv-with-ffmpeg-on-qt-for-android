@@ -41,7 +41,7 @@ if [ ! -d "FFmpeg" ]; then
 fi
 
 cd FFmpeg
-git reset --hard b910b34926657531d84269bd7c61fb8c74e5d905
+git reset --hard 10506de9ad1fb050737ef79cf4853742b793c37d
 git apply ../ffmpeg-patch.diff
 
 make distclean > /dev/null 2>&1
@@ -56,7 +56,6 @@ make distclean > /dev/null 2>&1
 --disable-ffmpeg \
 --disable-ffplay \
 --disable-ffprobe \
---disable-ffserver \
 --disable-avdevice \
 --disable-doc \
 --disable-symver \

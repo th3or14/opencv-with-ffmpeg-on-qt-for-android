@@ -1,8 +1,8 @@
 diff --git a/configure b/configure
-index ee88da5..c3cb00c 100755
+index e79dae896c..261a039c90 100755
 --- a/configure
 +++ b/configure
-@@ -3069,11 +3069,11 @@ LIBNAME='$(LIBPREF)$(FULLNAME)$(LIBSUF)'
+@@ -3642,11 +3642,11 @@ LIBNAME='$(LIBPREF)$(FULLNAME)$(LIBSUF)'
  SLIBPREF="lib"
  SLIBSUF=".so"
  SLIBNAME='$(SLIBPREF)$(FULLNAME)$(SLIBSUF)'
@@ -15,6 +15,6 @@ index ee88da5..c3cb00c 100755
 -SLIB_INSTALL_LINKS='$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)'
 +SLIB_INSTALL_NAME='$(SLIBNAME)'
 +SLIB_INSTALL_LINKS=
+ VERSION_SCRIPT_POSTPROCESS_CMD="cat"
  
  asflags_filter=echo
- cflags_filter=echo
