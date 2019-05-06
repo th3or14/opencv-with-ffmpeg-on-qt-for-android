@@ -20,7 +20,7 @@ public:
     ~Widget();
 
 private slots:
-    void on_write_video_clicked();
+    void slot_write_video_clicked();
 
 private:
     Ui::Widget *ui;
