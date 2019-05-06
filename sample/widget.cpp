@@ -8,6 +8,7 @@ Widget::Widget(QWidget *parent) :
     ui->setupUi(this);
     ui->video_path->setText(QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) +
                             "/hello-world.mp4");
+    connect(ui->write_video, &QPushButton::clicked, this, &Widget::slot_write_video_clicked);
 }
 
 Widget::~Widget()
@@ -15,7 +16,7 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::on_write_video_clicked()
+void Widget::slot_write_video_clicked()
 {
     int frame_width = 320;
     int frame_height = 240;
