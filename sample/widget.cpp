@@ -18,8 +18,8 @@ Widget::~Widget()
 
 void Widget::slot_write_video_clicked()
 {
-    int frame_width = 320;
-    int frame_height = 240;
+    static const int frame_width = 320;
+    static const int frame_height = 240;
     cv::VideoWriter vw;
     if (!vw.open(ui->video_path->text().toStdString(), CV_FOURCC('M', 'P', '4', 'V'), 60,
                  cv::Size(frame_width, frame_height)))
