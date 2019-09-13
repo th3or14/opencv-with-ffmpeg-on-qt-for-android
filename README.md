@@ -1,16 +1,16 @@
 ## Environment installation and compiling
 
-Update CMake if necessary. Version 3.6.0 or higher is required. I built the latest stable version from source https://cmake.org/download/.
+Install CMake. Version 3.6.0 or higher is required. I got it from packages: ```apt install cmake```.
 
-Update Qt if necessary. I installed the latest stable version from Qt Maintenance Tool.
+Install Qt. I installed the latest stable version from Qt Maintenance Tool.
 
-Install JDK. Version 9 may cause some installation problems, version 8 is ok. I picked OpenJDK having executed ```apt install openjdk-8-jre openjdk-8-jdk```.
+Install JDK. I picked OpenJDK having executed ```apt install openjdk-11-jre openjdk-11-jdk```.
 
 Install Yasm (FFmpeg dependency). I got it from packages: ```apt install yasm```.
 
 Install Android Studio to get Android SDK https://developer.android.com/studio/index.html. Handling some Android stuff without Android Studio is painful.
 
-Download and unpack Android NDK https://developer.android.com/ndk/downloads/older_releases.html. Try android-ndk-r14b, some problems may occur if you choose later releases.
+Download and unpack Android NDK https://developer.android.com/ndk/downloads.
 
 You also have to add the Android NDK and SDK paths in Qt Creator at **Tools > Options > Devices > Android**.
 
@@ -23,9 +23,7 @@ export FFMPEG_SRC_DIR="$HOME/Development/opencv-with-ffmpeg-on-qt-for-android/FF
 
 to `~/.profile` and relogin.
 
-FFmpeg is configured to be compiled with `-O3`. For OpenCV optimization level is not `-O3`, see/modify `ANDROID_COMPILER_FLAGS_RELEASE` at `build/cmake/android.toolchain.cmake` inside your NDK directory.
-
-Now edit `NDK_PATH` inside `build.sh` and run this script to build FFmpeg 4.1 and OpenCV 4.0.1 for x86 and armeabi-v7a. Sources are downloaded automatically.
+Now edit `NDK_PATH` inside `build.sh` and run this script to build FFmpeg 4.2.1 and OpenCV 4.1.1 for x86 and armeabi-v7a. Sources are downloaded automatically.
 
 ## Running the sample application
 

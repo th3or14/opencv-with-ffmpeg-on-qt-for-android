@@ -43,9 +43,9 @@ if [ ! -d "opencv_contrib" ]; then
   git clone https://github.com/opencv/opencv_contrib
 fi
 
-git -C opencv_contrib reset --hard 25221244732dcf44c1450d0f93edc2529a61c0e1
+git -C opencv_contrib reset --hard 0915b7eaddba3c06d83e201c9a7595e73801f417
 cd opencv
-git reset --hard c9ad5779f2803dcc91a9938142209128d30b22d1
+git reset --hard ddbd10c0019f3ee5f43b7902d47e7fc4303a6574
 git apply ../opencv-patch.diff
 
 mkdir -p $BUILD_DIR

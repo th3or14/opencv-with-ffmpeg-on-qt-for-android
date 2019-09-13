@@ -41,7 +41,7 @@ if [ ! -d "FFmpeg" ]; then
 fi
 
 cd FFmpeg
-git reset --hard 10506de9ad1fb050737ef79cf4853742b793c37d
+git reset --hard 1529dfb73a5157dcb8762051ec4c8d8341762478
 git apply ../ffmpeg-patch.diff
 
 make distclean > /dev/null 2>&1
