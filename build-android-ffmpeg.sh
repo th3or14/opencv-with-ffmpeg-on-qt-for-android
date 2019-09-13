@@ -26,25 +26,23 @@ if [ -z "$HOST" ]; then
 fi
 
 if [ $1 == "armeabi-v7a" ]; then
-    TOOLCHAIN=$NDK_PATH/toolchains/arm-linux-androideabi-$NDK_COMPILER_VERSION/prebuilt/$HOST/bin
-    TARGET=arm-linux-androideabi
     EXTRA_CFLAGS="-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -target thumbv7-none-linux-androideabi"
     EXTRA_LDFLAGS="-march=armv7-a --fix-cortex-a8"
     CPU=armv7-a
     ARCH=armv7-a
     PLATFORM_ARCH=arm
-    TOOLCHAIN_FOLDER=$TARGET
     LIB_FOLDER=lib
+    TARGET=arm-linux-androideabi
+    TOOLCHAIN_FOLDER=$TARGET
 elif [ $1 == "x86" ]; then
-    TOOLCHAIN=$NDK_PATH/toolchains/x86-$NDK_COMPILER_VERSION/prebuilt/$HOST/bin
-    TARGET=i686-linux-android
     EXTRA_CFLAGS="-pipe -march=atom -msse3 -ffast-math -mfpmath=sse -target i686-none-linux-androideabi -mtune=intel -m32"
-    EXTRA_LDFLAGS="-lm -lz --no-undefined -z,noexecstack"
+    EXTRA_LDFLAGS="-lm -lz --no-undefined -z noexecstack"
     CPU=i686
     ARCH=x86
     PLATFORM_ARCH=x86
-    TOOLCHAIN_FOLDER=$PLATFORM_ARCH
     LIB_FOLDER=lib
+    TARGET=i686-linux-android
+    TOOLCHAIN_FOLDER=$PLATFORM_ARCH
 else
     echo "error: unsupported script argument: $1"
     exit 1
@@ -52,6 +50,7 @@ fi
 
 PREFIX=$(pwd)/FFmpeg/build-android-$1
 SYSROOT=$NDK_PATH/sysroot
+TOOLCHAIN=$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/bin
 LLVM_TOOLCHAIN=$NDK_PATH/toolchains/llvm/prebuilt/$HOST/bin
 CC=$LLVM_TOOLCHAIN/clang
 CXX=$LLVM_TOOLCHAIN/clang++
