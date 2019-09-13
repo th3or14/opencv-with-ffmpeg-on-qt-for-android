@@ -73,6 +73,9 @@ make distclean > /dev/null 2>&1
 --prefix=$PREFIX \
 --enable-avresample \
 --enable-shared \
+--enable-yasm \
+--enable-asm \
+--enable-cross-compile \
 --disable-debug \
 --disable-stripping \
 --disable-static \
@@ -83,7 +86,6 @@ make distclean > /dev/null 2>&1
 --disable-doc \
 --disable-symver \
 --target-os=android \
---enable-cross-compile \
 --sysroot=$SYSROOT \
 --enable-pic \
 --extra-cflags="-O3 -fPIC -I$SYSROOT/usr/include/$TARGET $EXTRA_CFLAGS" \
