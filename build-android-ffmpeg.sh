@@ -58,6 +58,7 @@ AS=$CC
 AR=$TOOLCHAIN/$TARGET-ar
 LD=$TOOLCHAIN/$TARGET-ld
 STRIP=$TOOLCHAIN/$TARGET-strip
+NDK_MAKE=$NDK_PATH/prebuilt/$HOST/bin/make
 
 if [ ! -d "FFmpeg" ]; then
   git clone https://github.com/FFmpeg/FFmpeg.git
@@ -67,15 +68,16 @@ cd FFmpeg
 git reset --hard 1529dfb73a5157dcb8762051ec4c8d8341762478
 git apply ../ffmpeg-patch.diff
 
-make distclean > /dev/null 2>&1
+$NDK_MAKE distclean > /dev/null 2>&1
 
 ./configure \
 --prefix=$PREFIX \
 --enable-avresample \
 --enable-shared \
---enable-yasm \
---enable-asm \
 --enable-cross-compile \
+--enable-protocol=file \
+--enable-small \
+--disable-asm \
 --disable-debug \
 --disable-stripping \
 --disable-static \
@@ -85,6 +87,7 @@ make distclean > /dev/null 2>&1
 --disable-avdevice \
 --disable-doc \
 --disable-symver \
+--disable-programs \
 --target-os=android \
 --sysroot=$SYSROOT \
 --enable-pic \
@@ -100,6 +103,6 @@ make distclean > /dev/null 2>&1
 --cxx=$CXX \
 --as=$AS
 
-make clean
-make -j $(nproc --all)
-make install
+$NDK_MAKE clean
+$NDK_MAKE -j $(nproc --all)
+$NDK_MAKE install
