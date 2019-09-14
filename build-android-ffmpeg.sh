@@ -77,7 +77,6 @@ $NDK_MAKE distclean > /dev/null 2>&1
 --enable-cross-compile \
 --enable-protocol=file \
 --enable-small \
---disable-asm \
 --disable-debug \
 --disable-stripping \
 --disable-static \
