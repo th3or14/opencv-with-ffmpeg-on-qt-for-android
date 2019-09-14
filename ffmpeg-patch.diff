@@ -1,5 +1,5 @@
 diff --git a/configure b/configure
-index 34c2adb4a4..3b33494353 100755
+index 34c2adb4a4..683945effc 100755
 --- a/configure
 +++ b/configure
 @@ -3713,11 +3713,11 @@ LIBNAME='$(LIBPREF)$(FULLNAME)$(LIBSUF)'
@@ -18,3 +18,12 @@ index 34c2adb4a4..3b33494353 100755
  VERSION_SCRIPT_POSTPROCESS_CMD="cat"
  
  asflags_filter=echo
+@@ -5220,7 +5220,7 @@ case $target_os in
+         add_ldexeflags -fPIE -pie
+         SLIB_INSTALL_NAME='$(SLIBNAME)'
+         SLIB_INSTALL_LINKS=
+-        SHFLAGS='-shared -Wl,-soname,$(SLIBNAME)'
++        SHFLAGS='-shared -soname $(SLIBNAME)'
+         ;;
+     haiku)
+         prefix_default="/boot/common"
