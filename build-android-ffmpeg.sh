@@ -57,6 +57,8 @@ CXX=$LLVM_TOOLCHAIN/clang++
 AS=$CC
 AR=$TOOLCHAIN/$TARGET-ar
 LD=$TOOLCHAIN/$TARGET-ld
+NM=$TOOLCHAIN/$TARGET-nm
+RANLIB=$TOOLCHAIN/$TARGET-ranlib
 STRIP=$TOOLCHAIN/$TARGET-strip
 NDK_MAKE=$NDK_PATH/prebuilt/$HOST/bin/make
 
@@ -66,7 +68,11 @@ fi
 
 cd FFmpeg
 git reset --hard 1529dfb73a5157dcb8762051ec4c8d8341762478
-git apply ../ffmpeg-patch.diff
+
+sed -i "s/SLIBNAME_WITH_MAJOR='\$(SLIBNAME).\$(LIBMAJOR)'/SLIBNAME_WITH_MAJOR='\$(SLIBPREF)\$(FULLNAME)-\$(LIBMAJOR)\$(SLIBSUF)'/" configure
+sed -i "s/LIB_INSTALL_EXTRA_CMD='\$\$(RANLIB) \"\$(LIBDIR)\\/\$(LIBNAME)\"'/LIB_INSTALL_EXTRA_CMD='\$\$(RANLIB) \"\$(LIBDIR)\\/\$(LIBNAME)\"'/" configure
+sed -i "s/SLIB_INSTALL_NAME='\$(SLIBNAME_WITH_VERSION)'/SLIB_INSTALL_NAME='\$(SLIBNAME_WITH_MAJOR)'/" configure
+sed -i "s/SLIB_INSTALL_LINKS='\$(SLIBNAME_WITH_MAJOR) \$(SLIBNAME)'/SLIB_INSTALL_LINKS='\$(SLIBNAME)'/" configure
 
 $NDK_MAKE distclean > /dev/null 2>&1
 
@@ -91,16 +97,35 @@ $NDK_MAKE distclean > /dev/null 2>&1
 --sysroot=$SYSROOT \
 --enable-pic \
 --extra-cflags="-O3 -fPIC -I$SYSROOT/usr/include/$TARGET $EXTRA_CFLAGS" \
---extra-ldflags="-lc -L$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/lib/gcc/$TARGET/$NDK_COMPILER_VERSION.x -L$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER $EXTRA_LDFLAGS" \
+--extra-ldflags="-lc -L$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/lib/gcc/$TARGET/$NDK_COMPILER_VERSION.x -L$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER -rpath-link=$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER $EXTRA_LDFLAGS" \
 --extra-libs=-lgcc \
 --cpu=$CPU \
 --arch=$ARCH \
+--as=$AS \
 --ar=$AR \
 --strip=$STRIP \
 --ld=$LD \
 --cc=$CC \
 --cxx=$CXX \
---as=$AS
+--nm=$NM \
+--ranlib=$RANLIB
+
+sed -i "s/#define HAVE_TRUNC 0/#define HAVE_TRUNC 1/" config.h
+sed -i "s/#define HAVE_TRUNCF 0/#define HAVE_TRUNCF 1/" config.h
+sed -i "s/#define HAVE_RINT 0/#define HAVE_RINT 1/" config.h
+sed -i "s/#define HAVE_LRINT 0/#define HAVE_LRINT 1/" config.h
+sed -i "s/#define HAVE_LRINTF 0/#define HAVE_LRINTF 1/" config.h
+sed -i "s/#define HAVE_ROUND 0/#define HAVE_ROUND 1/" config.h
+sed -i "s/#define HAVE_ROUNDF 0/#define HAVE_ROUNDF 1/" config.h
+sed -i "s/#define HAVE_CBRT 0/#define HAVE_CBRT 1/" config.h
+sed -i "s/#define HAVE_CBRTF 0/#define HAVE_CBRTF 1/" config.h
+sed -i "s/#define HAVE_COPYSIGN 0/#define HAVE_COPYSIGN 1/" config.h
+sed -i "s/#define HAVE_ERF 0/#define HAVE_ERF 1/" config.h
+sed -i "s/#define HAVE_HYPOT 0/#define HAVE_HYPOT 1/" config.h
+sed -i "s/#define HAVE_ISNAN 0/#define HAVE_ISNAN 1/" config.h
+sed -i "s/#define HAVE_ISFINITE 0/#define HAVE_ISFINITE 1/" config.h
+sed -i "s/#define HAVE_INET_ATON 0/#define HAVE_INET_ATON 1/" config.h
+sed -i "s/#define getenv(x) NULL/\\/\\/ #define getenv(x) NULL/" config.h
 
 $NDK_MAKE clean
 $NDK_MAKE -j $(nproc --all)
