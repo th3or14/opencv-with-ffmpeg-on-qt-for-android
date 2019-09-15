@@ -8,7 +8,4 @@ export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 export CC=$NDK_PATH/toolchains/llvm/prebuilt/$HOST/bin/clang
 export CXX=$NDK_PATH/toolchains/llvm/prebuilt/$HOST/bin/clang++
 
-./build-android-ffmpeg.sh armeabi-v7a
-./build-android-ffmpeg.sh x86
-./build-android-opencv.sh armeabi-v7a
-./build-android-opencv.sh x86
+for i in armeabi-v7a x86; do ./build-android-ffmpeg.sh $i && ./build-android-opencv.sh $i; done
