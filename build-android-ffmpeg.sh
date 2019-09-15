@@ -1,31 +1,41 @@
 #!/bin/bash
 
-if [ "$#" -ne 1 ]; then
+if [ $# -ne 1 ]; then
     echo "error: illegal number of script arguments"
     exit 1
 fi
 
-if [ -z "$NDK_PATH" ]; then
+if [ -z $NDK_PATH ]; then
     echo "error: undefined NDK_PATH"
     exit 1
 fi
 
-if [ -z "$NDK_COMPILER_VERSION" ]; then
+if [ -z $NDK_COMPILER_VERSION ]; then
     echo "error: undefined NDK_COMPILER_VERSION"
     exit 1
 fi
 
-if [ -z "$NDK_PLATFORM_LEVEL" ]; then
+if [ -z $NDK_PLATFORM_LEVEL ]; then
     echo "error: undefined NDK_PLATFORM_LEVEL"
     exit 1
 fi
 
-if [ -z "$HOST" ]; then
+if [ -z $HOST ]; then
     echo "error: undefined HOST"
     exit 1
 fi
 
-if [ $1 == "armeabi-v7a" ]; then
+if [ -z $CC ]; then
+    echo "error: undefined CC"
+    exit 1
+fi
+
+if [ -z $CXX ]; then
+    echo "error: undefined CXX"
+    exit 1
+fi
+
+if [ $1 == armeabi-v7a ]; then
     EXTRA_CFLAGS="-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -target thumbv7-none-linux-androideabi"
     EXTRA_LDFLAGS="-march=armv7-a --fix-cortex-a8"
     CPU=armv7-a
@@ -34,7 +44,7 @@ if [ $1 == "armeabi-v7a" ]; then
     LIB_FOLDER=lib
     TARGET=arm-linux-androideabi
     TOOLCHAIN_FOLDER=$TARGET
-elif [ $1 == "x86" ]; then
+elif [ $1 == x86 ]; then
     EXTRA_CFLAGS="-pipe -march=atom -msse3 -ffast-math -mfpmath=sse -target i686-none-linux-androideabi -mtune=intel -m32"
     EXTRA_LDFLAGS="-lm -lz --no-undefined -z noexecstack"
     CPU=i686
@@ -51,9 +61,6 @@ fi
 PREFIX=$(pwd)/FFmpeg/build-android-$1
 SYSROOT=$NDK_PATH/sysroot
 TOOLCHAIN=$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/bin
-LLVM_TOOLCHAIN=$NDK_PATH/toolchains/llvm/prebuilt/$HOST/bin
-CC=$LLVM_TOOLCHAIN/clang
-CXX=$LLVM_TOOLCHAIN/clang++
 AS=$CC
 AR=$TOOLCHAIN/$TARGET-ar
 LD=$TOOLCHAIN/$TARGET-ld
@@ -62,7 +69,7 @@ RANLIB=$TOOLCHAIN/$TARGET-ranlib
 STRIP=$TOOLCHAIN/$TARGET-strip
 NDK_MAKE=$NDK_PATH/prebuilt/$HOST/bin/make
 
-if [ ! -d "FFmpeg" ]; then
+if [ ! -d FFmpeg ]; then
   git clone https://github.com/FFmpeg/FFmpeg.git
 fi
 
