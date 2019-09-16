@@ -35,6 +35,11 @@ if [ -z $CXX ]; then
     exit 1
 fi
 
+if [ -z $NDK_MAKE ]; then
+    echo "error: undefined NDK_MAKE"
+    exit 1
+fi
+
 if [ $1 == armeabi-v7a ]; then
     EXTRA_CFLAGS="-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -target thumbv7-none-linux-androideabi"
     EXTRA_LDFLAGS="-march=armv7-a --fix-cortex-a8"
@@ -64,10 +69,7 @@ TOOLCHAIN=$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/
 AS=$CC
 AR=$TOOLCHAIN/$TARGET-ar
 LD=$TOOLCHAIN/$TARGET-ld
-NM=$TOOLCHAIN/$TARGET-nm
-RANLIB=$TOOLCHAIN/$TARGET-ranlib
 STRIP=$TOOLCHAIN/$TARGET-strip
-NDK_MAKE=$NDK_PATH/prebuilt/$HOST/bin/make
 
 if [ ! -d FFmpeg ]; then
   git clone https://github.com/FFmpeg/FFmpeg.git
@@ -84,23 +86,20 @@ $NDK_MAKE distclean > /dev/null 2>&1
 --enable-avresample \
 --enable-shared \
 --enable-cross-compile \
---enable-protocol=file \
---enable-small \
 --disable-debug \
 --disable-stripping \
 --disable-static \
---disable-ffmpeg \
---disable-ffplay \
---disable-ffprobe \
+--disable-programs \
 --disable-avdevice \
 --disable-doc \
 --disable-symver \
---disable-programs \
+--disable-swresample \
+--disable-avfilter \
 --target-os=android \
 --sysroot=$SYSROOT \
 --enable-pic \
---extra-cflags="-O3 -fPIC -I$SYSROOT/usr/include/$TARGET $EXTRA_CFLAGS" \
---extra-ldflags="-lc -L$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/lib/gcc/$TARGET/$NDK_COMPILER_VERSION.x -L$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER -rpath-link=$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER $EXTRA_LDFLAGS" \
+--extra-cflags="$EXTRA_CFLAGS -O3 -fPIC -I$SYSROOT/usr/include/$TARGET" \
+--extra-ldflags="$EXTRA_LDFLAGS -lc -L$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/lib/gcc/$TARGET/$NDK_COMPILER_VERSION.x -L$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER" \
 --extra-libs=-lgcc \
 --cpu=$CPU \
 --arch=$ARCH \
@@ -109,9 +108,7 @@ $NDK_MAKE distclean > /dev/null 2>&1
 --strip=$STRIP \
 --ld=$LD \
 --cc=$CC \
---cxx=$CXX \
---nm=$NM \
---ranlib=$RANLIB
+--cxx=$CXX
 
 sed -i "s/#define HAVE_TRUNC 0/#define HAVE_TRUNC 1/" config.h
 sed -i "s/#define HAVE_TRUNCF 0/#define HAVE_TRUNCF 1/" config.h

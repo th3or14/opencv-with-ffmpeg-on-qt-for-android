@@ -30,11 +30,19 @@ if [ -z $CXX ]; then
     exit 1
 fi
 
-BUILD_DIR=build-android-$1
+if [ -z $NDK_MAKE ]; then
+    echo "error: undefined NDK_MAKE"
+    exit 1
+fi
 
-export LD_LIBRARY_PATH=$FFMPEG_SRC_DIR/$BUILD_DIR/lib
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$FFMPEG_SRC_DIR/$BUILD_DIR/lib/pkgconfig
-export PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR:$FFMPEG_SRC_DIR/$BUILD_DIR/lib
+BUILD_DIR=build-android-$1
+FFMPEG_PATH=$FFMPEG_SRC_DIR/$BUILD_DIR
+
+export LD_LIBRARY_PATH=$FFMPEG_PATH/lib
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$FFMPEG_PATH/lib/pkgconfig
+export PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR:$FFMPEG_PATH/lib
+
+ADDITIONAL_FFMPEG_DEFINES="-DFFMPEG_INCLUDE_DIRS=$FFMPEG_PATH/include -Dpkgcfg_lib_FFMPEG_avformat=$FFMPEG_PATH/lib/libavformat.so -Dpkgcfg_lib_FFMPEG_avcodec=$FFMPEG_PATH/lib/libavcodec.so -Dpkgcfg_lib_FFMPEG_avutil=$FFMPEG_PATH/lib/libavutil.so -Dpkgcfg_lib_FFMPEG_swscale=$FFMPEG_PATH/lib/libswscale.so -Dpkgcfg_lib_FFMPEG_libavresample_avresample=$FFMPEG_PATH/lib/libavresample.so"
 
 if [ ! -d opencv ]; then
   git clone https://github.com/opencv/opencv
@@ -53,8 +61,8 @@ mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 git clean -d -f -x
 
-cmake -DANDROID_ABI=$1 -DANDROID_NATIVE_API_LEVEL=$NDK_PLATFORM_LEVEL -DCMAKE_TOOLCHAIN_FILE=$NDK_PATH/build/cmake/android.toolchain.cmake -DBUILD_opencv_world=ON -DWITH_FFMPEG=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_PERF_TESTS=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_DOCS=OFF -DBUILD_opencv_apps=OFF -DBUILD_ANDROID_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules ..
+cmake $ADDITIONAL_FFMPEG_DEFINES -DANDROID_ABI=$1 -DANDROID_NATIVE_API_LEVEL=$NDK_PLATFORM_LEVEL -DCMAKE_TOOLCHAIN_FILE=$NDK_PATH/build/cmake/android.toolchain.cmake -DBUILD_opencv_world=ON -DWITH_FFMPEG=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_PERF_TESTS=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_DOCS=OFF -DBUILD_opencv_apps=OFF -DBUILD_ANDROID_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules ..
 
-make clean
-make -j $(nproc --all)
-make install
+$NDK_MAKE clean
+$NDK_MAKE -j $(nproc --all)
+$NDK_MAKE install
