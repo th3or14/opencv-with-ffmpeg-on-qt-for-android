@@ -93,8 +93,6 @@ $NDK_MAKE distclean > /dev/null 2>&1
 --disable-avdevice \
 --disable-doc \
 --disable-symver \
---disable-swresample \
---disable-avfilter \
 --target-os=android \
 --sysroot=$SYSROOT \
 --enable-pic \
