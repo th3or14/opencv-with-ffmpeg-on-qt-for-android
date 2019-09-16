@@ -63,6 +63,4 @@ ANDROID_EXTRA_LIBS += \
     $$FFMPEG_BUILD_DIR/lib/libavformat.so \
     $$FFMPEG_BUILD_DIR/lib/libswscale.so \
     $$FFMPEG_BUILD_DIR/lib/libavutil.so \
-    $$FFMPEG_BUILD_DIR/lib/libavfilter.so \
-    $$FFMPEG_BUILD_DIR/lib/libswresample.so \
     $$FFMPEG_BUILD_DIR/lib/libavresample.so
