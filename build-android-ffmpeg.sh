@@ -50,6 +50,7 @@ if [ $1 == armeabi-v7a ]; then
     TARGET=arm-linux-androideabi
     TOOLCHAIN_FOLDER=$TARGET
 elif [ $1 == x86 ]; then
+    EXTRA_CONFIGURE_FLAGS="--enable-yasm --disable-yasm"
     EXTRA_CFLAGS="-pipe -march=atom -msse3 -ffast-math -mfpmath=sse -target i686-none-linux-androideabi -mtune=intel -m32"
     EXTRA_LDFLAGS="-lm -lz --no-undefined -z noexecstack"
     CPU=i686
@@ -82,6 +83,7 @@ git apply ../ffmpeg-patch.diff
 $NDK_MAKE distclean > /dev/null 2>&1
 
 ./configure \
+$EXTRA_CONFIGURE_FLAGS \
 --prefix=$PREFIX \
 --enable-avresample \
 --enable-shared \
