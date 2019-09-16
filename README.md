@@ -4,7 +4,7 @@ Install CMake. Version 3.6.0 or higher is required. I got it from packages: ```a
 
 Install Qt. I installed the latest stable version from Qt Maintenance Tool.
 
-Install JDK. I picked OpenJDK having executed ```apt install openjdk-11-jre openjdk-11-jdk```.
+Install JDK version 8 (later versions may lead to some issues, e.g., Qt doesn't accept Android SDK). I picked OpenJDK having executed apt install openjdk-8-jre openjdk-8-jdk. I picked OpenJDK having executed ```apt install openjdk-8-jre openjdk-8-jdk```.
 
 Install Yasm (FFmpeg dependency). I got it from packages: ```apt install yasm```.
 
