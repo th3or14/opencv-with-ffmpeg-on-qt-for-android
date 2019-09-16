@@ -12,7 +12,7 @@ Install Android Studio to get Android SDK https://developer.android.com/studio/i
 
 Download and unpack Android NDK https://developer.android.com/ndk/downloads.
 
-You also have to add the Android NDK and SDK paths in Qt Creator at **Tools > Options > Devices > Android**.
+You also have to add the Android NDK and SDK paths in Qt Creator at **Tools > Options > Devices > Android**. After that click **Update Installed** inside **SDK Manager** tab to accept licenses.
 
 Create environment variables `OPENCV_SRC_DIR`, `FFMPEG_SRC_DIR`. Consider them to be the paths to future directories `opencv` and `FFmpeg` in a directory where you are going to execute the build scripts, e.g., directly in this repository. In order to register environment variables in my system I put these lines
 
