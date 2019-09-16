@@ -50,7 +50,7 @@ if [ $1 == armeabi-v7a ]; then
     TARGET=arm-linux-androideabi
     TOOLCHAIN_FOLDER=$TARGET
 elif [ $1 == x86 ]; then
-    EXTRA_CONFIGURE_FLAGS="--enable-yasm --disable-yasm"
+    EXTRA_CONFIGURE_FLAGS="--enable-yasm --disable-asm"
     EXTRA_CFLAGS="-pipe -march=atom -msse3 -ffast-math -mfpmath=sse -target i686-none-linux-androideabi -mtune=intel -m32"
     EXTRA_LDFLAGS="-lm -lz --no-undefined -z noexecstack"
     CPU=i686
