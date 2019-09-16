@@ -17,8 +17,8 @@ You also have to add the Android NDK and SDK paths in Qt Creator at **Tools > Op
 Create environment variables `OPENCV_SRC_DIR`, `FFMPEG_SRC_DIR`. Consider them to be the paths to future directories `opencv` and `FFmpeg` in a directory where you are going to execute the build scripts, e.g., directly in this repository. In order to register environment variables in my system I put these lines
 
 ```
-export OPENCV_SRC_DIR="$HOME/Development/opencv-with-ffmpeg-on-qt-for-android/opencv"
-export FFMPEG_SRC_DIR="$HOME/Development/opencv-with-ffmpeg-on-qt-for-android/FFmpeg"
+export OPENCV_SRC_DIR=$HOME/opencv-with-ffmpeg-on-qt-for-android/opencv
+export FFMPEG_SRC_DIR=$HOME/opencv-with-ffmpeg-on-qt-for-android/FFmpeg
 ```
 
 to `~/.profile` and relogin.
