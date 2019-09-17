@@ -34,3 +34,5 @@ Open `sample/sample.pro` in Qt Creator. Note that this project uses your previou
 #### Text relocations warning
 
 This issue appears on x86 only. https://trac.ffmpeg.org/ticket/4928
+
+Passing `--disable-asm` to configure script in case of x86 build is used as a workaround. The drawback is performance hit.
