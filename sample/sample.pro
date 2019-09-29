@@ -52,17 +52,9 @@ INCLUDEPATH += \
 
 LIBS += \
     -L$$OPENCV_BUILD_DIR/install/sdk/native/libs/$$ARCHITECTURE \
-    -L$$FFMPEG_BUILD_DIR/lib \
     -lopencv_world \
     -lopencv_img_hash
 
 ANDROID_EXTRA_LIBS += \
     $$OPENCV_BUILD_DIR/install/sdk/native/libs/$$ARCHITECTURE/libopencv_world.so \
-    $$OPENCV_BUILD_DIR/install/sdk/native/libs/$$ARCHITECTURE/libopencv_img_hash.so \
-    $$FFMPEG_BUILD_DIR/lib/libavcodec.so \
-    $$FFMPEG_BUILD_DIR/lib/libavformat.so \
-    $$FFMPEG_BUILD_DIR/lib/libswscale.so \
-    $$FFMPEG_BUILD_DIR/lib/libavutil.so \
-    $$FFMPEG_BUILD_DIR/lib/libswresample.so \
-    $$FFMPEG_BUILD_DIR/lib/libavfilter.so \
-    $$FFMPEG_BUILD_DIR/lib/libavresample.so
+    $$OPENCV_BUILD_DIR/install/sdk/native/libs/$$ARCHITECTURE/libopencv_img_hash.so
