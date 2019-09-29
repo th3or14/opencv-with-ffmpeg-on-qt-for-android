@@ -80,6 +80,9 @@ cd FFmpeg
 git reset --hard 1529dfb73a5157dcb8762051ec4c8d8341762478
 git apply ../ffmpeg-patch.diff
 
+mkdir -p $PREFIX
+git -C $PREFIX clean -d -f -x
+
 $NDK_MAKE distclean > /dev/null 2>&1
 
 ./configure \
