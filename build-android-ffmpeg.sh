@@ -98,9 +98,8 @@ $EXTRA_CONFIGURE_FLAGS \
 --target-os=android \
 --sysroot=$SYSROOT \
 --enable-pic \
---extra-cflags="$EXTRA_CFLAGS -O3 -fPIC -I$SYSROOT/usr/include/$TARGET" \
---extra-ldflags="$EXTRA_LDFLAGS -lc -L$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/lib/gcc/$TARGET/$NDK_COMPILER_VERSION.x -L$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER" \
---extra-libs=-lgcc \
+--extra-cflags="$EXTRA_CFLAGS -O3 -fPIC" \
+--extra-ldflags="$EXTRA_LDFLAGS -lc -L$NDK_PATH/toolchains/llvm/prebuilt/$HOST/sysroot/usr/lib/$TARGET/$NDK_PLATFORM_LEVEL" \
 --cpu=$CPU \
 --arch=$ARCH \
 --as=$AS \
