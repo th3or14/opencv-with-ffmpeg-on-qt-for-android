@@ -86,11 +86,11 @@ $NDK_MAKE distclean > /dev/null 2>&1
 $EXTRA_CONFIGURE_FLAGS \
 --prefix=$PREFIX \
 --enable-avresample \
---enable-shared \
 --enable-cross-compile \
+--enable-static \
+--disable-shared \
 --disable-debug \
 --disable-stripping \
---disable-static \
 --disable-programs \
 --disable-avdevice \
 --disable-doc \

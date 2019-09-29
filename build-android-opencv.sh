@@ -42,7 +42,7 @@ export LD_LIBRARY_PATH=$FFMPEG_PATH/lib
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$FFMPEG_PATH/lib/pkgconfig
 export PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR:$FFMPEG_PATH/lib
 
-ADDITIONAL_FFMPEG_DEFINES="-DFFMPEG_INCLUDE_DIRS=$FFMPEG_PATH/include -Dpkgcfg_lib_FFMPEG_avformat=$FFMPEG_PATH/lib/libavformat.so -Dpkgcfg_lib_FFMPEG_avcodec=$FFMPEG_PATH/lib/libavcodec.so -Dpkgcfg_lib_FFMPEG_avutil=$FFMPEG_PATH/lib/libavutil.so -Dpkgcfg_lib_FFMPEG_swscale=$FFMPEG_PATH/lib/libswscale.so -Dpkgcfg_lib_FFMPEG_libavresample_avresample=$FFMPEG_PATH/lib/libavresample.so -Dpkgcfg_lib_FFMPEG_swresample=$FFMPEG_PATH/lib/libswresample.so -Dpkgcfg_lib_FFMPEG_libavresample_avutil=$FFMPEG_PATH/lib/libavutil.so"
+ADDITIONAL_FFMPEG_DEFINES="-DFFMPEG_INCLUDE_DIRS=$FFMPEG_PATH/include -Dpkgcfg_lib_FFMPEG_avformat=$FFMPEG_PATH/lib/libavformat.a -Dpkgcfg_lib_FFMPEG_avcodec=$FFMPEG_PATH/lib/libavcodec.a -Dpkgcfg_lib_FFMPEG_avutil=$FFMPEG_PATH/lib/libavutil.a -Dpkgcfg_lib_FFMPEG_swscale=$FFMPEG_PATH/lib/libswscale.a -Dpkgcfg_lib_FFMPEG_libavresample_avresample=$FFMPEG_PATH/lib/libavresample.a -Dpkgcfg_lib_FFMPEG_swresample=$FFMPEG_PATH/lib/libswresample.a -Dpkgcfg_lib_FFMPEG_libavresample_avutil=$FFMPEG_PATH/lib/libavutil.a"
 
 if [ ! -d opencv ]; then
   git clone https://github.com/opencv/opencv
