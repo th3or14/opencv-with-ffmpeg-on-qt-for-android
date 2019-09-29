@@ -18,6 +18,9 @@ Widget::~Widget()
 
 void Widget::slot_write_video_clicked()
 {
+    static const QString write_permission = "android.permission.WRITE_EXTERNAL_STORAGE";
+    if (QtAndroid::checkPermission(write_permission) == QtAndroid::PermissionResult::Denied)
+        QtAndroid::requestPermissionsSync(QStringList() << write_permission);
     static const int frame_width = 320;
     static const int frame_height = 240;
     cv::VideoWriter vw;

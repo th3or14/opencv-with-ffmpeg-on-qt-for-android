@@ -36,7 +36,3 @@ Open `sample/sample.pro` in Qt Creator. Note that this project uses your previou
 This issue appears on x86 only. https://trac.ffmpeg.org/ticket/4928
 
 Passing `--disable-asm` to configure script in case of x86 build is used as a workaround. The drawback is performance hit.
-
-#### Can't open file for writing!
-
-Try to grant the sample application write access via system settings.
