@@ -21,9 +21,9 @@ export OPENCV_SRC_DIR=$HOME/opencv-with-ffmpeg-on-qt-for-android/opencv
 export FFMPEG_SRC_DIR=$HOME/opencv-with-ffmpeg-on-qt-for-android/FFmpeg
 ```
 
-to `~/.profile` and run `source ~/.profile`.
+to `~/.profile` and ran `source ~/.profile`.
 
-Now edit `NDK_PATH` inside `build.sh` and run this script to build FFmpeg 4.2.1 and OpenCV 4.1.1 for x86 and armeabi-v7a. Sources are downloaded automatically.
+Now edit `NDK_PATH` inside `build.sh` and run this script to build FFmpeg 4.2.1 and OpenCV 4.1.1 for x86 and armeabi-v7a using Clang. Sources are downloaded automatically.
 
 ## Running the sample application
 
