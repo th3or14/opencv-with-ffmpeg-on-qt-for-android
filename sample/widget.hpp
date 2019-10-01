@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <QStandardPaths>
- #include <QtAndroid>
+#include <QtAndroid>
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/videoio/videoio_c.h>
