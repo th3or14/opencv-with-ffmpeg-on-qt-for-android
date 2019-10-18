@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 8631bbc7b..a46251c33 100644
+index 34aa1b1a3..663b1767c 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -267,7 +267,7 @@ OCV_OPTION(WITH_NVCUVID "Include NVidia Video Decoding library support" OFF  # d
+@@ -251,7 +251,7 @@ OCV_OPTION(WITH_NVCUVID "Include NVidia Video Decoding library support" OFF  # d
  OCV_OPTION(WITH_EIGEN "Include Eigen2/Eigen3 support" (NOT CV_DISABLE_OPTIMIZATION AND NOT CMAKE_CROSSCOMPILING)
    VISIBLE_IF NOT WINRT
    VERIFY HAVE_EIGEN)
@@ -11,7 +11,7 @@ index 8631bbc7b..a46251c33 100644
    VISIBLE_IF NOT IOS AND NOT WINRT
    VERIFY HAVE_FFMPEG)
  OCV_OPTION(WITH_GSTREAMER "Include Gstreamer support" ON
-@@ -435,7 +435,7 @@ OCV_OPTION(WITH_ANDROID_MEDIANDK "Use Android Media NDK for Video I/O (Android)"
+@@ -419,7 +419,7 @@ OCV_OPTION(WITH_ANDROID_MEDIANDK "Use Android Media NDK for Video I/O (Android)"
  
  # OpenCV build components
  # ===================================================
@@ -20,7 +20,7 @@ index 8631bbc7b..a46251c33 100644
  OCV_OPTION(BUILD_opencv_apps        "Build utility applications (used for example to train classifiers)" (NOT ANDROID AND NOT WINRT) IF (NOT APPLE_FRAMEWORK) )
  OCV_OPTION(BUILD_opencv_js          "Build JavaScript bindings by Emscripten" OFF )
  OCV_OPTION(BUILD_ANDROID_PROJECTS   "Build Android projects providing .apk files" ON  IF ANDROID )
-@@ -1388,7 +1388,7 @@ endif()
+@@ -1273,7 +1273,7 @@ endif()
  if(WITH_FFMPEG OR HAVE_FFMPEG)
    if(OPENCV_FFMPEG_USE_FIND_PACKAGE)
      status("    FFMPEG:"       HAVE_FFMPEG         THEN "YES (find_package)"                       ELSE "NO (find_package)")
