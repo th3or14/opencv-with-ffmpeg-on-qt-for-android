@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export NDK_PATH=$HOME/Android/android-ndk-r20
+export NDK_PATH=$HOME/Android/android-ndk-r21
 export NDK_COMPILER_VERSION=4.9
 export NDK_PLATFORM_LEVEL=23
 export HOST=linux-x86_64
