@@ -27,7 +27,7 @@ Now edit `NDK_PATH` along with `ANDROID_SDK_ROOT` inside `build.sh` and run this
 
 ## Running the sample application
 
-Open `sample/sample.pro` in Qt Creator. Note that this project uses your previously registered environment variables `OPENCV_SRC_DIR` and `FFMPEG_SRC_DIR` in order to obtain libraries. In case of success the application generates a sample video.
+Open `sample/sample.pro` in Qt Creator. Change `ARCHITECTURE` to the corresponding architecture for your current build. Note that this project uses your previously registered environment variables `OPENCV_SRC_DIR` and `FFMPEG_SRC_DIR` in order to obtain libraries. Build and run. Device management is left on you. In case of success the application generates a sample video.
 
 ## Known issues
 
