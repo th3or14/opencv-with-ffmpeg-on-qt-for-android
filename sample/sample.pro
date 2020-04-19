@@ -31,18 +31,8 @@ MOBILITY =
 
 QMAKE_CXXFLAGS += -Wall -Wextra
 
-defineTest(booleanFind) {
-    res = $$find($$1, $$2)
-    !count(res, 0): return(true)
-    return(false)
-}
-
-defineReplace(extractArchitectureFromKit) {
-    booleanFind(QMAKESPEC, android_armv7): return (armeabi-v7a)
-    booleanFind(QMAKESPEC, android_x86): return (x86)
-}
-
-ARCHITECTURE = $$extractArchitectureFromKit()
+# armeabi-v7a, x86
+ARCHITECTURE = armeabi-v7a
 
 OPENCV_BUILD_DIR = $$(OPENCV_SRC_DIR)/build-android-$$ARCHITECTURE
 FFMPEG_BUILD_DIR = $$(FFMPEG_SRC_DIR)/build-android-$$ARCHITECTURE
