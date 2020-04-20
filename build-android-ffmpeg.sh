@@ -68,7 +68,7 @@ elif [ $1 == arm64-v8a ]; then
     TARGET=aarch64-linux-android
     TOOLCHAIN_FOLDER=$TARGET
 elif [ $1 == x86_64 ]; then
-    EXTRA_CONFIGURE_FLAGS="--disable-neon --enable-asm --enable-inline-asm"
+    EXTRA_CONFIGURE_FLAGS="--disable-neon --disable-asm --disable-inline-asm"
     EXTRA_CFLAGS="-target x86_64-none-linux-androideabi"
     CPU=x86_64
     ARCH=x86_64
