@@ -37,7 +37,6 @@ ARCHITECTURE = armeabi-v7a
 ANDROID_ABIS=$$ARCHITECTURE
 
 OPENCV_BUILD_DIR = $$(OPENCV_SRC_DIR)/build-android-$$ARCHITECTURE
-FFMPEG_BUILD_DIR = $$(FFMPEG_SRC_DIR)/build-android-$$ARCHITECTURE
 
 INCLUDEPATH += \
     $$OPENCV_BUILD_DIR/install/sdk/native/jni/include
