@@ -31,8 +31,10 @@ MOBILITY =
 
 QMAKE_CXXFLAGS += -Wall -Wextra
 
-# armeabi-v7a, x86
+# armeabi-v7a, arm64-v8a, x86, x86_64
 ARCHITECTURE = armeabi-v7a
+
+ANDROID_ABIS=$$ARCHITECTURE
 
 OPENCV_BUILD_DIR = $$(OPENCV_SRC_DIR)/build-android-$$ARCHITECTURE
 FFMPEG_BUILD_DIR = $$(FFMPEG_SRC_DIR)/build-android-$$ARCHITECTURE
