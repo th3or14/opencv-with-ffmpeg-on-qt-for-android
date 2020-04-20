@@ -28,11 +28,3 @@ Now edit `NDK_PATH` along with `ANDROID_SDK_ROOT` inside `build.sh` and run this
 ## Running the sample application
 
 Open `sample/sample.pro` in Qt Creator. Change `ARCHITECTURE` to the corresponding architecture for your current build. Note that this project uses your previously registered environment variables `OPENCV_SRC_DIR` and `FFMPEG_SRC_DIR` in order to obtain libraries. Build and run. Device management is left on you. In case of success the application generates a sample video.
-
-## Known issues
-
-#### Text relocations warning
-
-This issue appears on x86 only. https://trac.ffmpeg.org/ticket/4928
-
-Passing `--disable-asm` to configure script in case of x86 build is used as a workaround. The drawback is performance hit.

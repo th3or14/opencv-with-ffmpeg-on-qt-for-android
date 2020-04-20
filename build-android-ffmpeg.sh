@@ -41,8 +41,8 @@ if [ -z $NDK_MAKE ]; then
 fi
 
 if [ $1 == armeabi-v7a ]; then
-    EXTRA_CFLAGS="-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -target thumbv7-none-linux-androideabi"
-    EXTRA_LDFLAGS="-march=armv7-a --fix-cortex-a8"
+    EXTRA_CONFIGURE_FLAGS="--disable-neon --enable-asm --enable-inline-asm"
+    EXTRA_CFLAGS="-target thumbv7-none-linux-androideabi"
     CPU=armv7-a
     ARCH=armv7-a
     PLATFORM_ARCH=arm
@@ -50,14 +50,31 @@ if [ $1 == armeabi-v7a ]; then
     TARGET=arm-linux-androideabi
     TOOLCHAIN_FOLDER=$TARGET
 elif [ $1 == x86 ]; then
-    EXTRA_CONFIGURE_FLAGS=--disable-asm
-    EXTRA_CFLAGS="-pipe -march=atom -msse3 -ffast-math -mfpmath=sse -target i686-none-linux-androideabi -mtune=intel -m32"
-    EXTRA_LDFLAGS="-lm -lz --no-undefined -z noexecstack"
+    EXTRA_CONFIGURE_FLAGS="--disable-neon --disable-asm --disable-inline-asm"
+    EXTRA_CFLAGS="-target i686-none-linux-androideabi"
     CPU=i686
-    ARCH=x86
+    ARCH=i686
     PLATFORM_ARCH=x86
     LIB_FOLDER=lib
     TARGET=i686-linux-android
+    TOOLCHAIN_FOLDER=$PLATFORM_ARCH
+elif [ $1 == arm64-v8a ]; then
+    EXTRA_CONFIGURE_FLAGS="--enable-neon --enable-asm --enable-inline-asm"
+    EXTRA_CFLAGS="-target aarch64-none-linux-android"
+    CPU=armv8-a
+    ARCH=aarch64
+    PLATFORM_ARCH=arm64
+    LIB_FOLDER=lib
+    TARGET=aarch64-linux-android
+    TOOLCHAIN_FOLDER=$TARGET
+elif [ $1 == x86_64 ]; then
+    EXTRA_CONFIGURE_FLAGS="--disable-neon --enable-asm --enable-inline-asm"
+    EXTRA_CFLAGS="-target x86_64-none-linux-androideabi"
+    CPU=x86_64
+    ARCH=x86_64
+    PLATFORM_ARCH=x86_64
+    LIB_FOLDER=lib64
+    TARGET=x86_64-linux-android
     TOOLCHAIN_FOLDER=$PLATFORM_ARCH
 else
     echo "error: unsupported script argument: $1"
@@ -102,7 +119,7 @@ $EXTRA_CONFIGURE_FLAGS \
 --sysroot=$SYSROOT \
 --enable-pic \
 --extra-cflags="$EXTRA_CFLAGS -O3 -fPIC -I$SYSROOT/usr/include/$TARGET" \
---extra-ldflags="$EXTRA_LDFLAGS -lc -L$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/lib/gcc/$TARGET/$NDK_COMPILER_VERSION.x -L$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER" \
+--extra-ldflags="-lc -L$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/lib/gcc/$TARGET/$NDK_COMPILER_VERSION.x -L$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER" \
 --extra-libs=-lgcc \
 --cpu=$CPU \
 --arch=$ARCH \

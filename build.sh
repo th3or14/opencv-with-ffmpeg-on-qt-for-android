@@ -9,4 +9,4 @@ export CC=$NDK_PATH/toolchains/llvm/prebuilt/$HOST/bin/clang
 export CXX=$NDK_PATH/toolchains/llvm/prebuilt/$HOST/bin/clang++
 export NDK_MAKE=$NDK_PATH/prebuilt/$HOST/bin/make
 
-for i in armeabi-v7a x86; do ./build-android-ffmpeg.sh $i && ./build-android-opencv.sh $i; done
+for i in armeabi-v7a x86 arm64-v8a x86_64; do ./build-android-ffmpeg.sh $i && ./build-android-opencv.sh $i; done
