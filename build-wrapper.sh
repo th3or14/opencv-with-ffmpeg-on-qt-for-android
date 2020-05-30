@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export NDK_PATH=/opt/android-sdk/ndk/21.2.6472646
 export NDK_COMPILER_VERSION=4.9
 export NDK_PLATFORM_LEVEL=23
 export HOST=linux-x86_64

@@ -29,3 +29,4 @@ RUN /opt/android-sdk/cmdline-tools/tools/bin/sdkmanager "build-tools;29.0.3"
 
 RUN ln -s /opt/android-sdk/cmdline-tools/tools /opt/android-sdk/tools
 ENV PATH /opt/android-sdk/cmdline-tools/tools/bin/:$PATH
+ENV NDK_PATH /opt/android-sdk/ndk/21.2.6472646
