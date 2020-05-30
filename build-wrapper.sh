@@ -1,9 +1,10 @@
 #!/bin/bash
 
+# NDK_PATH and ANDROID_SDK_ROOT are declared in Dockerfile
+
 export NDK_COMPILER_VERSION=4.9
 export NDK_PLATFORM_LEVEL=23
 export HOST=linux-x86_64
-export ANDROID_SDK_ROOT=/opt/android-sdk
 export CC=$NDK_PATH/toolchains/llvm/prebuilt/$HOST/bin/clang
 export CXX=$NDK_PATH/toolchains/llvm/prebuilt/$HOST/bin/clang++
 export NDK_MAKE=$NDK_PATH/prebuilt/$HOST/bin/make
