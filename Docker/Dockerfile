@@ -13,6 +13,7 @@ RUN apt-get install -y cmake
 RUN apt-get install -y unzip
 RUN apt-get install -y openjdk-8-jre openjdk-8-jdk
 RUN apt-get install -y pkg-config
+RUN apt-get install -y yasm
 
 RUN echo "# inside docker container you can run anything" >> /etc/sudoers
 RUN echo "ALL ALL = NOPASSWD: ALL" >> /etc/sudoers
