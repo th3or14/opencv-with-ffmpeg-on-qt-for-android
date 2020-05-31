@@ -108,9 +108,7 @@ $EXTRA_CONFIGURE_FLAGS \
 --enable-avresample \
 --enable-cross-compile \
 --enable-static \
---disable-shared \
 --disable-debug \
---disable-stripping \
 --disable-programs \
 --disable-avdevice \
 --disable-doc \
@@ -118,7 +116,7 @@ $EXTRA_CONFIGURE_FLAGS \
 --target-os=android \
 --sysroot=$SYSROOT \
 --enable-pic \
---extra-cflags="$EXTRA_CFLAGS -O3 -fPIC -I$SYSROOT/usr/include/$TARGET" \
+--extra-cflags="$EXTRA_CFLAGS -I$SYSROOT/usr/include/$TARGET" \
 --extra-ldflags="-lc -L$NDK_PATH/toolchains/$TOOLCHAIN_FOLDER-$NDK_COMPILER_VERSION/prebuilt/$HOST/lib/gcc/$TARGET/$NDK_COMPILER_VERSION.x -L$NDK_PATH/platforms/android-$NDK_PLATFORM_LEVEL/arch-$PLATFORM_ARCH/usr/$LIB_FOLDER" \
 --extra-libs=-lgcc \
 --cpu=$CPU \
