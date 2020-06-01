@@ -1,4 +1,4 @@
-## Building the opencv libraries
+## Building the OpenCV libraries
 
 - Install Docker
 - Supported architectures are listed in `build-wrapper.sh`, you are free to reduce the list there according to your needs
