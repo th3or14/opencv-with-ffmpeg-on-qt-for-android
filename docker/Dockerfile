@@ -1,6 +1,10 @@
 FROM ubuntu:bionic
 
-RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y sudo locales && locale-gen en_US.UTF-8 && apt-get install -y curl software-properties-common git wget cmake unzip openjdk-8-jre openjdk-8-jdk pkg-config yasm && \
+RUN apt-get update && \
+apt-get dist-upgrade -y && \
+apt-get install -y sudo locales && \
+locale-gen en_US.UTF-8 && \
+apt-get install -y curl software-properties-common git wget cmake unzip openjdk-8-jre openjdk-8-jdk pkg-config yasm && \
 echo "# inside docker container you can run anything" >> /etc/sudoers && \
 echo "ALL ALL = NOPASSWD: ALL" >> /etc/sudoers && \
 wget https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip && \
